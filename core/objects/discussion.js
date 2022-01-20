@@ -1,3 +1,4 @@
+
 class Discussion{
 
 
@@ -45,3 +46,4 @@ class Discussion{
         this.messages= []
     }
 }
+module.exports = Discussion

@@ -45,7 +45,7 @@ class Detachement{
         rooms.forEach(
             room=>{
                 this.rooms.push(
-                    new this.classes.room(this.db,this.detachementid,room,{discussions:this.classes.discussions})
+                    new this.classes.room(this.db,this.detachementid,room,this.classes)
                 )
             }
         )
@@ -54,9 +54,6 @@ class Detachement{
             ()=>{
                 let ok = 0
                 let ready = []
-
-                console.log('passed boy')
-                console.log(this.rooms)
                 this.rooms.forEach(
                     room=>{
                         ready.push(room.ready?1:0)
@@ -96,9 +93,42 @@ class Detachement{
         this.name = data.nom
         this.setRooms(
             ()=>{
-                console.log('got rooms')
+
             }
         )
+    }
+
+
+    getRooms(){
+        let rooms = this.rooms
+        console.log('rooms are ',rooms)
+        return {
+            firstOne:()=>{
+                return rooms.length?rooms[0]:null
+            }
+            ,lastOne:()=>{
+                return  rooms.length?rooms[rooms.length-1]:null
+            }
+            ,getByName:(name)=>{
+                let found = null
+                rooms.forEach(
+                    room=>{
+                        if(room.nom == name) found = room
+                    }
+                )
+                return found
+            }
+            ,getById:(name)=>{
+                let found = null
+                rooms.forEach(
+                    room=>{
+                        if(room.nom == name) found = room
+                    }
+                )
+                return found
+            }
+            ,all:rooms
+        }
     }
 
     constructor(db,classes,data){

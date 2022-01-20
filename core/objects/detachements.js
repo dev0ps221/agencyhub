@@ -16,6 +16,15 @@ class Detachements{
         )
     }
 
+    firstOne(){
+        return this.detachements.length?this.detachements[0]:null
+    }
+
+    lastOne(){
+        return  this.detachements.length?this.detachements[this.detachements.length-1]:null
+    }
+
+
     setDetachements(detachements){
         detachements.forEach(
             detachement=>{

@@ -46,8 +46,8 @@ console.clear()
 app.on(
     'ready',()=>{
 
-        const one = app.detachements.getById(1)
-        console.log(one)
+        const one = app.detachements.firstOne()
+        console.log(one.getRooms().firstOne())
         
     }
 )

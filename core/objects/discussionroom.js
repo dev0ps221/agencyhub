@@ -3,9 +3,9 @@ class DiscussionRoom{
     registerDeeBeeActions(){
         
         this.db._____registerAction(
-            getRoomDiscussions,
+            'getRoomDiscussions',
             (roomId,cb)=>{
-                let req = this.db.__selecFrom(
+                let req = this.db.__selectFrom(
                     'roomdiscussions',['*'],[['roomid'],[roomId]]
                 )
                 this.db.db.query(req,cb)
@@ -13,9 +13,9 @@ class DiscussionRoom{
         )
         
         this.db._____registerAction(
-            getRoomDiscussion,
+            'getRoomDiscussion',
             (id,cb)=>{
-                let req = this.db.__selecFrom(
+                let req = this.db.__selectFrom(
                     'roomdiscussions',['*'],[['id'],[id]]
                 )
                 this.db.db.query(req,cb)
@@ -36,7 +36,7 @@ class DiscussionRoom{
 
     }
 
-    setDiscussions(){
+    setDiscussions(cb){
         this.db.getRoomDiscussions(
             this.roomId,(e,discussions)=>{
                 if(e)console.log(e)
@@ -46,6 +46,7 @@ class DiscussionRoom{
                 this.ready = 1
             }
         )
+        if(cb)cb()
     }
 
     assignData(data){
@@ -53,11 +54,16 @@ class DiscussionRoom{
         this.roomId = data.id
         this.nom = data.nom
         this.name = this.nom
+        this.setDiscussions(
+            ()=>{
+            }
+        )
     }
 
     constructor(db,detachmentId,data,classes){
         this.db = db
         this.detachmentId = detachmentId
+        this.registerDeeBeeActions()
         this.assignData(data)
         this.classes = classes
         this.generaldiscussion = []
