@@ -14,6 +14,39 @@ class Detachements{
                 )
             }
         )
+
+        this.db._____registerAction(
+            'getDetachement',(id,cb)=>{
+                let req = this.db.__selectFrom(
+                    'detachements',['*'],[['id'],[id]]
+                )
+                this.db.db.query(
+                    req,cb
+                )
+            }
+        )
+
+        this.db._____registerAction(
+            'addDetachement',(nom,cb)=>{
+                let req = this.db.__insertINTO(
+                    'detachements',['nom'],[nom]
+                )
+                this.db.db.query(
+                    req,cb
+                )
+            }
+        )
+
+        this.db._____registerAction(
+            'removeDetachement',(id,cb)=>{
+                let req = this.db.__delFrom(
+                    'detachements',['id'],[id]
+                )
+                this.db.db.query(
+                    req,cb
+                )
+            }
+        )
     }
 
     firstOne(){
@@ -43,6 +76,18 @@ class Detachements{
             }
         )
         return found
+    }
+
+    insertDetachement(nom,cb){
+        this.db.addDetachement(
+            nom,cb
+        )
+    }
+
+    deleteDetachement(nom,cb){
+        this.db.addDetachement(
+            nom,cb
+        )
     }
 
     getByName(name){
