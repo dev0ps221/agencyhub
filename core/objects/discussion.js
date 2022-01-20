@@ -106,6 +106,7 @@ class Discussion{
     assignData(data){
         this.id = data.id
         this.discussionid = this.id
+        this.special = data.special
         this.nom = data.name
         this.name = data.name
         this.roomid = data.roomid

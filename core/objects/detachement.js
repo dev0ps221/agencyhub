@@ -101,7 +101,6 @@ class Detachement{
 
     getRooms(){
         let rooms = this.rooms
-        console.log('rooms are ',rooms)
         return {
             firstOne:()=>{
                 return rooms.length?rooms[0]:null

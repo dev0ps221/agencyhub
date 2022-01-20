@@ -27,7 +27,11 @@ class DiscussionRoom{
     assignDiscussions(discussions){
         discussions.forEach(
             discussion=>{
-                this.discussions.push(new this.classes.discussion(this.db,discussion,this.classes))
+                if(discussion.special=='main'){
+                    this.generaldiscussion = new this.classes.discussion(this.db,discussion,this.classes)
+                }else{
+                    this.discussions.push(new this.classes.discussion(this.db,discussion,this.classes))
+                }
             }
         )
     }
