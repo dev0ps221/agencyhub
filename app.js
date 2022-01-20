@@ -48,14 +48,6 @@ app.on(
 
         const one = app.detachements.getById(1)
         console.log(one)
-        // one.registerMember(
-        //     {
-        //         nom:"Mbengue",
-        //         prenom:"El Hadji Seybatou",
-        //         password:"sh4k3d",
-        //         telephone:"784268344"
-        //     }
-        // )
         
     }
 )

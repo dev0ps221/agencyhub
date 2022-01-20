@@ -66,7 +66,25 @@ class Detachements{
         this.detachements = []
         this.registerDeeBeeActions()
         this.setData(()=>{
-            this.ready = 1
+            let waitready = null
+            waitready = setInterval(()=>{
+                let detsready = []
+                let ok = 0
+                this.detachements.forEach(
+                    det=>{
+                        detsready.push(det.ready?1:0)
+                    }
+                )
+                detsready.forEach(
+                    n=>{
+                        ok+=n
+                    }
+                )
+                if(ok==this.detachements.length){
+                    this.ready = 1
+                    clearInterval(waitready)
+                }
+            },2000)
         })
     }
 }

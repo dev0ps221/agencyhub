@@ -24,12 +24,28 @@ class DiscussionRoom{
     
     }
 
+    assignDiscussions(discussions){
+        discussions.forEach(
+            discussion=>{
+                this.discussions.push(new this.classes.discussion(this.db,discussion,this.classes))
+            }
+        )
+    }
+
     getDiscussions(){
 
     }
 
     setDiscussions(){
-
+        this.db.getRoomDiscussions(
+            this.roomId,(e,discussions)=>{
+                if(e)console.log(e)
+                else{
+                    this.assignDiscussions(discussions)
+                }
+                this.ready = 1
+            }
+        )
     }
 
     assignData(data){

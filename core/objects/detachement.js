@@ -49,6 +49,31 @@ class Detachement{
                 )
             }
         )
+        let roomsready = null
+        roomsready = setInterval(
+            ()=>{
+                let ok = 0
+                let ready = []
+
+                console.log('passed boy')
+                console.log(this.rooms)
+                this.rooms.forEach(
+                    room=>{
+                        ready.push(room.ready?1:0)
+                    }
+                )
+                ready.forEach(
+                    n=>{
+                        ok+=n
+                    }
+                )
+                if(ok==this.rooms.length){
+                    this.roomsready = 1
+                    this.ready = 1
+                    clearInterval(roomsready)
+                }
+            },2000
+        )
     }
 
     getRooms(){
