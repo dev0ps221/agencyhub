@@ -32,7 +32,7 @@ class App{
         this.waiters = {}
         this.waiting = {}
         this.man = require('./man')
-        this.detachements = new this.man.classes.detachements(this.man.data,{member:this.man.classes.member,members:this.man.classes.members,detachement:this.man.classes.detachement,detachements:this.man.classes.detachements})
+        this.detachements = new this.man.classes.detachements(this.man.data,this.man.classes)
         this.eventloops = 0
     }
 

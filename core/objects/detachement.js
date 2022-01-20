@@ -2,7 +2,18 @@ const Detachements = require("./detachements")
 
 class Detachement{
 
-
+    registerDeeBeeActions(){
+        this.db._____registerAction(
+            'getRooms',(detachementid,cb)=>{
+                let req = this.db.__selectFrom(
+                    'rooms',['*'],[['detachementid'],[detachementid]]
+                )
+                this.db.db.query(
+                    req,cb
+                )
+            }
+        )
+    }
     setCotisations(){
 
     }
@@ -20,7 +31,24 @@ class Detachement{
     }
 
     setRooms(){
+        this.db.getRooms(
+            this.detachementid,(e,rooms)=>{
+                if(e)console.log(e)
+                else{
+                    this.assignRooms(rooms)
+                }
+            }
+        )
+    }
 
+    assignRooms(rooms){
+        rooms.forEach(
+            room=>{
+                this.rooms.push(
+                    new this.classes.room(this.db,this.detachementid,room,{discussions:this.classes.discussions})
+                )
+            }
+        )
     }
 
     getRooms(){
@@ -41,6 +69,11 @@ class Detachement{
         this.id = data.id
         this.nom = data.nom
         this.name = data.nom
+        this.setRooms(
+            ()=>{
+                console.log('got rooms')
+            }
+        )
     }
 
     constructor(db,classes,data){
@@ -50,6 +83,7 @@ class Detachement{
         this.discussions = []
         this.rooms       = []
         this.generaldiscussion = null
+        this.registerDeeBeeActions()
         this.assignData(data)
         this.members = new this.classes.members(this.db,this.id,{member:this.classes.member})
     }
