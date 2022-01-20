@@ -1,6 +1,24 @@
 class DiscussionRoom{
 
+    registerDeeBeeActions(){
+        
+        this.db._____registerAction(
+            getRoomDiscussion,
+            (roomId,cb)=>{
+                let req = this.db.selecFrom(
+                    'roomdiscussions',['*'],[['roomid'],[roomId]]
+                )
+                this.db.db.query(req,cb)
+            }
+        )
+    
+    }
+
     getDiscussions(){
+
+    }
+
+    setDiscussions(){
 
     }
 
